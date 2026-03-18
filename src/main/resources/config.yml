@@ -1,0 +1,17 @@
+# Structloc Configuration
+
+# Paramètres de recherche des structures
+search:
+  # Distance maximale (en blocs) pour localiser une structure
+  max-radius: 20000
+  
+  # Chercher aussi les structures non explorées
+  find-unexplored: false
+
+# Paramètres de la boussole
+compass:
+  # Intervalle de mise à jour de la boussole (en ticks, 20 ticks = 1 seconde)
+  update-interval-ticks: 5
+  
+  # Nom affiché de la boussole
+  name: "Localiseur de structure"

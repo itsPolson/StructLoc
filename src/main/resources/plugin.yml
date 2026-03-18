@@ -1,0 +1,23 @@
+name: StructLoc
+version: 1.0.0
+main: io.github.paulmrtnz.StructLoc
+author: Paul Martinez
+description: Find structures near you using this fabulous compass !
+api-version: "1.21"
+commands:
+  structloc:
+    description: Sélectionne une structure pour la boussole
+    usage: /structloc <structure_id>
+    permission: structloc.command
+  givestructloc:
+    description: Donne une boussole de localisation (OP seulement)
+    usage: /givestructloc [joueur]
+    permission: structloc.give
+
+permissions:
+  structloc.command:
+    description: Allows players to use /structloc command
+    default: true
+  structloc.give:
+    description: Allows players to give the compass with /givestructloc
+    default: op
