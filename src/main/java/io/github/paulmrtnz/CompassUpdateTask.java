@@ -4,7 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Registry;
 import org.bukkit.entity.Player;
-import org.bukkit.generator.structure.StructureType;
+import org.bukkit.generator.structure.Structure;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.CompassMeta;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -51,14 +51,14 @@ public class CompassUpdateTask extends BukkitRunnable {
             .get(StructLoc.STRUCTURE_KEY, PersistentDataType.STRING);
         if (structId == null) return;
 
-        StructureType type = getStructureById(structId);
-        if (type == null) return;
+        Structure structure = getStructureById(structId);
+        if (structure == null) return;
 
         Location playerLoc = player.getLocation();
         if (playerLoc.getWorld() == null) return;
 
         // Localiser la structure la plus proche
-        var result = playerLoc.getWorld().locateNearestStructure(playerLoc, type, Config.getMaxSearchDistance(), Config.shouldFindUnexplored());
+        var result = playerLoc.getWorld().locateNearestStructure(playerLoc, structure, Config.getMaxSearchDistance(), Config.shouldFindUnexplored());
         if (result == null) return;
 
         // Mettre à jour la boussole pour pointer vers la structure
@@ -72,29 +72,13 @@ public class CompassUpdateTask extends BukkitRunnable {
         }
     }
 
-    private @Nullable StructureType getStructureById(String id) {
-        return switch (id) {
-            case "ancient_city" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("ancient_city"));
-            case "bastion_remnant" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("bastion_remnant"));
-            case "buried_treasure" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("buried_treasure"));
-            case "desert_pyramid" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("desert_pyramid"));
-            case "end_city" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("end_city"));
-            case "fortress" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("fortress"));
-            case "igloo" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("igloo"));
-            case "jungle_pyramid" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("jungle_pyramid"));
-            case "mineshaft" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("mineshaft"));
-            case "monument" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("monument"));
-            case "ocean_ruins" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("ocean_ruins"));
-            case "pillager_outpost" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("pillager_outpost"));
-            case "ruined_portal" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("ruined_portal"));
-            case "shipwreck" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("shipwreck"));
-            case "stronghold" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("stronghold"));
-            case "swamp_hut" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("swamp_hut"));
-            case "trail_ruins" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("trail_ruins"));
-            case "trial_chambers" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("trial_chambers"));
-            case "village" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("village"));
-            case "woodland_mansion" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("woodland_mansion"));
-            default -> null;
-        };
+    private @Nullable Structure getStructureById(String id) {
+        for (Structure structure : Registry.STRUCTURE) {
+            String key = structure.getKey().getKey();
+            if (key.equalsIgnoreCase(id)) {
+                return structure;
+            }
+        }
+        return null;
     }
 }
