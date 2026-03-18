@@ -1,7 +1,6 @@
 package io.github.paulmrtnz;
 
 import org.bukkit.Location;
-import org.bukkit.Registry;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,6 +15,13 @@ import java.util.List;
 
 public class StructLocCommand implements CommandExecutor, TabCompleter {
 
+    private static final List<String> STRUCTURE_IDS = List.of(
+        "ancient_city", "bastion_remnant", "buried_treasure", "desert_pyramid",
+        "end_city", "fortress", "igloo", "jungle_pyramid", "mineshaft", "monument",
+        "ocean_ruins", "pillager_outpost", "ruined_portal", "shipwreck", "stronghold",
+        "swamp_hut", "trail_ruins", "trial_chambers", "village", "woodland_mansion"
+    );
+
     public StructLocCommand(StructLoc plugin) {}
 
     @Override
@@ -27,14 +33,14 @@ public class StructLocCommand implements CommandExecutor, TabCompleter {
         }
         if (args.length != 1) {
             player.sendMessage("§cUsage: /structloc <structure>");
-            // player.sendMessage("§eStructures: village, stronghold, end_city, bastion_remnant, ancient_city, desert_pyramid, jungle_pyramid, igloo, mineshaft, shipwreck, ocean_ruins, monument, pillager_outpost, swamp_hut, woodland_mansion, fortress, trail_ruins, trial_chambers, buried_treasure, ruined_portal");
             return true;
         }
 
         String id = args[0].toLowerCase();
         StructureType type = getStructureById(id);
         if (type == null) {
-            player.sendMessage("§cStructure inconnue.");
+            player.sendMessage("§cStructure inconnue: §e" + id + "§c.");
+            player.sendMessage("§eStructures disponibles: " + String.join(", ", STRUCTURE_IDS));
             return true;
         }
 
@@ -58,26 +64,26 @@ public class StructLocCommand implements CommandExecutor, TabCompleter {
 
     private @Nullable StructureType getStructureById(String id) {
         return switch (id) {
-            case "ancient_city" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("ancient_city"));
-            case "bastion_remnant" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("bastion_remnant"));
-            case "buried_treasure" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("buried_treasure"));
-            case "desert_pyramid" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("desert_pyramid"));
-            case "end_city" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("end_city"));
-            case "fortress" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("fortress"));
-            case "igloo" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("igloo"));
-            case "jungle_pyramid" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("jungle_pyramid"));
-            case "mineshaft" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("mineshaft"));
-            case "monument" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("monument"));
-            case "ocean_ruins" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("ocean_ruins"));
-            case "pillager_outpost" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("pillager_outpost"));
-            case "ruined_portal" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("ruined_portal"));
-            case "shipwreck" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("shipwreck"));
-            case "stronghold" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("stronghold"));
-            case "swamp_hut" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("swamp_hut"));
-            case "trail_ruins" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("trail_ruins"));
-            case "trial_chambers" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("trial_chambers"));
-            case "village" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("village"));
-            case "woodland_mansion" -> Registry.STRUCTURE_TYPE.get(org.bukkit.NamespacedKey.minecraft("woodland_mansion"));
+            case "ancient_city" -> StructureType.ANCIENT_CITY;
+            case "bastion_remnant" -> StructureType.BASTION_REMNANT;
+            case "buried_treasure" -> StructureType.BURIED_TREASURE;
+            case "desert_pyramid" -> StructureType.DESERT_PYRAMID;
+            case "end_city" -> StructureType.END_CITY;
+            case "fortress" -> StructureType.FORTRESS;
+            case "igloo" -> StructureType.IGLOO;
+            case "jungle_pyramid" -> StructureType.JUNGLE_PYRAMID;
+            case "mineshaft" -> StructureType.MINESHAFT;
+            case "monument" -> StructureType.MONUMENT;
+            case "ocean_ruins" -> StructureType.OCEAN_RUINS;
+            case "pillager_outpost" -> StructureType.PILLAGER_OUTPOST;
+            case "ruined_portal" -> StructureType.RUINED_PORTAL;
+            case "shipwreck" -> StructureType.SHIPWRECK;
+            case "stronghold" -> StructureType.STRONGHOLD;
+            case "swamp_hut" -> StructureType.SWAMP_HUT;
+            case "trail_ruins" -> StructureType.TRAIL_RUINS;
+            case "trial_chambers" -> StructureType.TRIAL_CHAMBERS;
+            case "village" -> StructureType.VILLAGE;
+            case "woodland_mansion" -> StructureType.WOODLAND_MANSION;
             default -> null;
         };
     }
@@ -86,30 +92,9 @@ public class StructLocCommand implements CommandExecutor, TabCompleter {
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (args.length != 1) return new ArrayList<>();
         
-        List<String> structures = new ArrayList<>();
-        structures.add("ancient_city");
-        structures.add("bastion_remnant");
-        structures.add("buried_treasure");
-        structures.add("desert_pyramid");
-        structures.add("end_city");
-        structures.add("fortress");
-        structures.add("igloo");
-        structures.add("jungle_pyramid");
-        structures.add("mineshaft");
-        structures.add("monument");
-        structures.add("ocean_ruins");
-        structures.add("pillager_outpost");
-        structures.add("ruined_portal");
-        structures.add("shipwreck");
-        structures.add("stronghold");
-        structures.add("swamp_hut");
-        structures.add("trail_ruins");
-        structures.add("trial_chambers");
-        structures.add("village");
-        structures.add("woodland_mansion");
-        
         String input = args[0].toLowerCase();
-        structures.removeIf(s -> !s.startsWith(input));
-        return structures;
+        List<String> matches = new ArrayList<>(STRUCTURE_IDS);
+        matches.removeIf(s -> !s.startsWith(input));
+        return matches;
     }
 }
