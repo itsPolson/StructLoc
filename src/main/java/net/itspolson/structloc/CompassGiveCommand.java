@@ -1,4 +1,4 @@
-package io.github.paulmrtnz;
+package net.itspolson.structloc;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;

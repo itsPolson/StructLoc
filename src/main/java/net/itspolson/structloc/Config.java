@@ -1,4 +1,4 @@
-package io.github.paulmrtnz;
+package net.itspolson.structloc;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

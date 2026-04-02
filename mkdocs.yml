@@ -1,0 +1,12 @@
+site_name: StructLoc Wiki
+theme:
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - markdown
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md

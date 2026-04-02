@@ -1,4 +1,4 @@
-package io.github.paulmrtnz;
+package net.itspolson.structloc;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -14,6 +14,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.StructureSearchResult;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.Nullable;
+
+import io.papermc.paper.registry.RegistryAccess;
+import io.papermc.paper.registry.RegistryKey;
 
 public class CompassUpdateTask extends BukkitRunnable {
     private final StructLoc plugin;
@@ -111,8 +114,9 @@ public class CompassUpdateTask extends BukkitRunnable {
     }
 
     private @Nullable Structure getStructureById(String id) {
-        for (Structure structure : Registry.STRUCTURE) {
-            String key = structure.getKey().getKey();
+        var registry = RegistryAccess.registryAccess().getRegistry(RegistryKey.STRUCTURE);
+        for (Structure structure : registry) {
+            String key = registry.getKey(structure).getKey();
             if (key.equalsIgnoreCase(id)) {
                 return structure;
             }

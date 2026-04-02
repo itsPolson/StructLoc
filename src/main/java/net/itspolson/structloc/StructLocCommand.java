@@ -1,7 +1,6 @@
-package io.github.paulmrtnz;
+package net.itspolson.structloc;
 
 import org.bukkit.Location;
-import org.bukkit.Registry;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -11,6 +10,10 @@ import org.bukkit.generator.structure.Structure;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import io.papermc.paper.registry.RegistryAccess;
+import io.papermc.paper.registry.RegistryKey;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,8 +76,9 @@ public class StructLocCommand implements CommandExecutor, TabCompleter {
     }
 
     private @Nullable Structure getStructureById(String id) {
-        for (Structure structure : Registry.STRUCTURE) {
-            String key = structure.getKey().getKey();
+        var registry = RegistryAccess.registryAccess().getRegistry(RegistryKey.STRUCTURE);
+        for (Structure structure : registry) {
+            String key = registry.getKey(structure).getKey();
             if (key.equalsIgnoreCase(id)) {
                 return structure;
             }

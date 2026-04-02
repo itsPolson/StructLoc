@@ -1,4 +1,4 @@
-package io.github.paulmrtnz;
+package net.itspolson.structloc;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
