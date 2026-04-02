@@ -1,0 +1,50 @@
+# ---- OS files ----
+.DS_Store
+Thumbs.db
+
+# ---- IDE/editor files ----
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+.factorypath
+
+# ---- Java/Gradle/Maven build output ----
+.gradle/
+build/
+out/
+target/
+bin/
+*.class
+*.jar
+*.war
+
+# ---- JVM crash logs ----
+hs_err_pid*
+replay_pid*
+
+# ---- Local test server/runtime files ----
+run/
+server/
+test-server/
+logs/
+crash-reports/
+world/
+world_nether/
+world_the_end/
+plugins/
+cache/
+libraries/
+versions/
+eula.txt
+ops.json
+whitelist.json
+banned-ips.json
+banned-players.json
+usercache.json
+
+# ---- Environment/local config ----
+.env
+*.local

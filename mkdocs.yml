@@ -1,0 +1,17 @@
+site_name: StructLoc Wiki
+theme:
+  name: material
+  palette: 
+    primary: orange
+    accent: orange
+features:
+  - content.code.copy
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md

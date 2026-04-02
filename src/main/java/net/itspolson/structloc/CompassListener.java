@@ -1,10 +1,9 @@
-package io.github.paulmrtnz;
+package net.itspolson.structloc;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Registry;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,6 +14,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.util.StructureSearchResult;
 import org.jetbrains.annotations.Nullable;
+import io.papermc.paper.registry.RegistryAccess;
+import io.papermc.paper.registry.RegistryKey;
 
 public class CompassListener implements Listener {
 
@@ -59,8 +60,9 @@ public class CompassListener implements Listener {
     }
 
     private @Nullable Structure getStructureById(String id) {
-        for (Structure structure : Registry.STRUCTURE) {
-            String key = structure.getKey().getKey();
+        var registry = RegistryAccess.registryAccess().getRegistry(RegistryKey.STRUCTURE);
+        for (Structure structure : registry) {
+            String key = registry.getKey(structure).getKey();
             if (key.equalsIgnoreCase(id)) {
                 return structure;
             }
