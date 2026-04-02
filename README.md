@@ -14,7 +14,7 @@ Once the plugin is compiled, you can find the JAR file in the `target` folder.
 
 # Documentation
 
-...
+The documentation for StructLoc can be found [here](https://itspolson.github.io/StructLoc/).
 
 # Issues
 
