@@ -1,5 +1,7 @@
 # Usage
 
+## Commands & Permissions
+
 | Command                     | Description                                                    | Permissions       |
 | --------------------------- | -------------------------------------------------------------- | ----------------- |
 | `/structloc <structure_ID>` | Displays the location of the specified structure in the world. | `structloc.use`   |

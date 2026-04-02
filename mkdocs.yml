@@ -1,15 +1,10 @@
 site_name: StructLoc Wiki
 theme:
-  name: material
-  palette: 
-    primary: orange
-    accent: orange
-features:
-  - content.code.copy
-markdown_extensions:
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - markdown
 
 nav:
   - Home: index.md
