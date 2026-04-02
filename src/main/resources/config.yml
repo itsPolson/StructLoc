@@ -18,3 +18,12 @@ compass:
 
   # Whether to use animations for the compass needle (may cause performance issues on some clients)
   use-animations: true
+  
+  # Cooldown between compass updates to prevent excessive server load (in seconds)
+  cooldown-seconds: 5
+  
+  # Proximity distance to automatically reset (±blocks)
+  proximity-distance-blocks: 20
+  
+  # Enable particle trail pointing towards the structure
+  particle-trail-enabled: true
