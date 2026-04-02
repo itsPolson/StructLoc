@@ -15,7 +15,9 @@ public class StructLoc extends JavaPlugin {
         StructLocCommand structLocCmd = new StructLocCommand(this);
         getCommand("structloc").setExecutor(structLocCmd);
         getCommand("structloc").setTabCompleter(structLocCmd);
-        getCommand("givestructloc").setExecutor(new CompassGiveCommand(this));
+        
+        CompassGiveCommand giveCmd = new CompassGiveCommand(this);
+        getCommand("givestructloc").setExecutor(giveCmd);
         
         // Enregistrer la recette de craft
         CompassRecipe.register(this);

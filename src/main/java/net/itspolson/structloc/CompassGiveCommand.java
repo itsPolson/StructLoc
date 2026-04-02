@@ -18,22 +18,22 @@ public class CompassGiveCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (!sender.hasPermission("structloc.give")) {
-            sender.sendMessage("§cVous n'avez pas la permission d'utiliser cette commande.");
+        if (!sender.hasPermission("structloc.command.give")) {
+            sender.sendMessage(MessageUtils.colorize("&cVous n'avez pas la permission d'utiliser cette commande."));
             return true;
         }
 
         Player target;
         if (args.length == 0) {
             if (!(sender instanceof Player)) {
-                sender.sendMessage("§cVous devez spécifier un joueur si vous n'êtes pas un joueur.");
+                sender.sendMessage(MessageUtils.colorize("&cVous devez spécifier un joueur si vous n'êtes pas un joueur."));
                 return true;
             }
             target = (Player) sender;
         } else {
             target = sender.getServer().getPlayer(args[0]);
             if (target == null) {
-                sender.sendMessage("§cJoueur " + args[0] + " introuvable.");
+                sender.sendMessage(MessageUtils.colorize("&cJoueur " + args[0] + " introuvable."));
                 return true;
             }
         }
@@ -48,9 +48,9 @@ public class CompassGiveCommand implements CommandExecutor {
         }
 
         target.getInventory().addItem(compass);
-        sender.sendMessage("§aBoussole donnée à §e" + target.getName());
+        sender.sendMessage(MessageUtils.colorize("&aBoussole donnée à &e" + target.getName()));
         if (!sender.equals(target)) {
-            target.sendMessage("§aVous avez reçu une boussole de localisation !");
+            target.sendMessage(MessageUtils.colorize("&aVous avez reçu une boussole de localisation !"));
         }
         return true;
     }
