@@ -1,15 +1,19 @@
 # Welcome to StructLoc Wiki pages
 
-![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)
-![Minecraft](https://img.shields.io/badge/minecraft-1.21.x-green.svg)
+![Version](https://img.shields.io/badge/version-1.1-blue.svg)
+![Minecraft](https://img.shields.io/badge/minecraft-1.21.1-green.svg)
+![Java](https://img.shields.io/badge/java-21-red.svg)
 
-StructLoc is a Paper plugin that provides a tool to display the location of a structure in the world. It is designed to be lightweight and efficient, making it ideal for use on servers with limited resources.
+StructLoc is a Paper plugin that provides a tool to display the location of a structure in the world. Find structures near you using this fabulous compass! It is designed to be lightweight and efficient, making it ideal for use on servers with limited resources.
 
 ## Features
 
-* High performance: StructLoc is optimized for performance, ensuring that it does not cause lag on your server.
-* Easy to use: The plugin is designed to be user-friendly, with simple commands and controls.
-* Customizable: StructLoc can be customized to fit your server's needs, with options for different structure types and display settings.
+* **High performance**: StructLoc is optimized for performance, ensuring that it does not cause lag on your server.
+* **Easy to use**: The plugin is designed to be user-friendly, with simple commands and controls.
+* **Customizable**: StructLoc can be customized to fit your server's needs, with options for different structure types and display settings.
+* **Crafting support**: Players can craft the Structure Locator compass using a recipe.
+* **Particle effects**: Optional particle trails pointing towards discovered structures.
+* **Auto-reset**: Compass automatically resets when you reach your destination.
 
 ## Getting Started
 
